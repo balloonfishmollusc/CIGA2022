@@ -5,6 +5,8 @@ using DG.Tweening;
 [DefaultExecutionOrder(32)]
 public class PlayerActor : RigidbodyActor2D
 {
+    public static PlayerActor instance { get; private set;}
+
     public float speed = 6f;
 
     [Header("Jumping")]
@@ -12,12 +14,17 @@ public class PlayerActor : RigidbodyActor2D
     public float maxHeight = 4f;
     public GroundDetector foot;
 
+    [Header("Body")]
+    public SmartActionSignal smartActionSignal;
+    public PlayerHand hand;
+
     private Transform obj;
     private Animator animator;
-
+    
     protected override void Awake()
     {
         base.Awake();
+        instance = this;
         obj = transform.Find("$");
         animator = obj.GetComponent<Animator>();
     }
@@ -62,7 +69,14 @@ public class PlayerActor : RigidbodyActor2D
 
     public void DoSmartAction()
     {
-
+        if (hand.hasProp)
+        {
+            hand.Throw();
+        }
+        else
+        {
+            smartActionSignal.DoEmit();
+        }
     }
 }
 

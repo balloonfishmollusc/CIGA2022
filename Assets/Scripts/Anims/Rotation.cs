@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestCS : MonoBehaviour
+public class Rotation : MonoBehaviour
 {
+    [SerializeField] float speed = 160;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +15,6 @@ public class TestCS : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        transform.Rotate(new Vector3(0, 0, speed*Time.deltaTime), Space.Self);
     }
 }
