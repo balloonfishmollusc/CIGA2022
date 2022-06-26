@@ -5,7 +5,7 @@ using DG.Tweening;
 [DefaultExecutionOrder(32)]
 public class PlayerActor : RigidbodyActor2D
 {
-    public static PlayerActor instance { get; private set;}
+    public static PlayerActor instance { get; private set; }
 
     public float speed = 6f;
 
@@ -20,11 +20,26 @@ public class PlayerActor : RigidbodyActor2D
 
     private Transform obj;
     private Animator animator;
-    
+
+    [System.NonSerialized] public Vector3 initialPos;
+
+    [Header("Audios")]
+    public AudioClip jumpFx;
+
+    public void ResetSelf()
+    {
+        transform.position = initialPos;
+        transform.Find("$").localScale = Vector3.one;
+        velocity = Vector2.zero;
+        gameObject.SetActive(true);
+        Camera.main.GetComponent<CameraFollow>().enabled = true;
+    }
+
     protected override void Awake()
     {
         base.Awake();
         instance = this;
+        initialPos = transform.position;
         obj = transform.Find("$");
         animator = obj.GetComponent<Animator>();
     }
@@ -60,6 +75,8 @@ public class PlayerActor : RigidbodyActor2D
         if (jumpTask.IsPlaying()) return;
         jumpTask = new JumpTask(this, minHeight, maxHeight).SetOwner(this);
         jumpTask.Play();
+
+        SFX.Play(jumpFx);
     }
 
     public void EndJump()

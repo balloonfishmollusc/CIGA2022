@@ -27,7 +27,7 @@ public class PlayerHand : MonoBehaviour
         if (r2d)
         {
             r2d.simulated = true;
-            r2d.velocity = new Vector2(speed, 0);
+            r2d.velocity = new Vector2(speed * transform.parent.Find("$").localScale.x, 0);
         }
     }
 }

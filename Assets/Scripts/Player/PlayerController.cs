@@ -5,20 +5,21 @@ public class PlayerController : MonoBehaviour
 {
     private PlayerActor actor;
 
+    public static PlayerController instance { get; private set; }
+
     [SerializeField] private MoveAction moveAction;
     [SerializeField] private ButtonAction jumpAction;
-    [SerializeField] private ButtonAction smartAction;
 
     private void Awake()
     {
         actor = transform.parent.GetComponent<PlayerActor>();
+        instance = this;
     }
 
     private void OnEnable()
     {
         moveAction.Enable();
         jumpAction.Enable();
-        smartAction.Enable();
         actor.onUpdate += Actor_onUpdate;
         actor.onFixedUpdate += Actor_onFixedUpdate;
     }
@@ -27,7 +28,6 @@ public class PlayerController : MonoBehaviour
     {
         moveAction.Disable();
         jumpAction.Disable();
-        smartAction.Disable();
         actor.onUpdate -= Actor_onUpdate;
         actor.onFixedUpdate -= Actor_onFixedUpdate;
     }
@@ -35,6 +35,14 @@ public class PlayerController : MonoBehaviour
     private void Actor_onUpdate()
     {
         actor.Move(moveAction.value);
+
+        if (SmartActionKey.key != null)
+        {
+            if (SmartActionKey.key.wasPressedThisFrame)
+            {
+                actor.DoSmartAction();
+            }
+        }
     }
 
     private void Actor_onFixedUpdate()
@@ -43,12 +51,6 @@ public class PlayerController : MonoBehaviour
         {
             case ButtonEvent.ButtonDown: actor.BeginJump(); break;
             case ButtonEvent.ButtonUp: actor.EndJump(); break;
-            default: break;
-        }
-
-        switch (smartAction.Update())
-        {
-            case ButtonEvent.ButtonUp: actor.DoSmartAction(); break;
             default: break;
         }
     }

@@ -5,12 +5,13 @@ using GameFlow;
 
 public class StartButton : InteractiveBehaviour
 {
+    bool firstShow = true;
+
     [SlotMethod("player/enter")]
-    void DoActivateAll(Signal s)
+    void Text(Signal s)
     {
-        foreach (var item in FindObjectsOfType<Activatable>())
-        {
-            item.enabled = true;
-        } 
+        if (!firstShow) return;
+        Subtitle.instance.ShowString("Nemo", "快拿开快拿开！尼莫不喜欢它！");
+        firstShow = false;
     }
 }
