@@ -5,6 +5,8 @@ using GameFlow;
 
 public class MushroomDialogue : InteractiveBehaviour
 {
+    int triggerCount = 0;
+
     [SlotMethod("player/enter")]
     void OnSignalWrapper(Signal s)
     {
@@ -13,7 +15,15 @@ public class MushroomDialogue : InteractiveBehaviour
 
     void OnSignal(Signal s)
     {
-        Subtitle.instance.ShowString("Nemo", "看起来很好吃...不过太小了，一定是因为这里太吵了！");
+        if (triggerCount % 2 == 0)
+        {
+            Subtitle.instance.ShowString("Nemo", "看起来很好吃...不过太小了");
+        }
+        else
+        {
+            Subtitle.instance.ShowString("Nemo", "这些蘑菇太小了，一定是因为这里太吵了！");
+        }
+        triggerCount++;
     }
 
     private void OnDestroy()

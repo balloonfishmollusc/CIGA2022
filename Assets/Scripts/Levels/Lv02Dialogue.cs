@@ -17,10 +17,13 @@ public class Lv02Dialogue : InteractiveBehaviour
     {
         if (!Camera.main.GetComponent<CameraFollow>().enabled) return;
 
-        switch (triggerCount)
+        if(triggerCount % 2 == 0)
         {
-            default:
-                Subtitle.instance.ShowString("Nemo", "唔...好像还是跳不过去...能不能用什么垫一下脚呢..."); break;
+            Subtitle.instance.ShowString("Nemo", "唔...好像跳不过去...要是「空中」能有个「台阶」就好了");
+        }
+        else
+        {
+            Subtitle.instance.ShowString("Nemo", "唔...好像还是跳不过去...也许铁匣子里面会有线索？");
         }
         triggerCount++;
     }

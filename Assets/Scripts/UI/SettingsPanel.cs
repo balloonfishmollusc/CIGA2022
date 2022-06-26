@@ -1,10 +1,14 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class SettingsPanel : MonoBehaviour
 {
     public static SettingsPanel instance { get; private set; }
 
     public VolControl volControl;
+
+
+    public List<System.Action> disableCallbacks = new List<System.Action>();
 
     private void Awake()
     {
@@ -25,6 +29,13 @@ public class SettingsPanel : MonoBehaviour
         GetComponent<CanvasGroup>().blocksRaycasts = false;
 
         Time.timeScale = 1;
+
+        foreach (var item in disableCallbacks)
+        {
+            item();
+        }
+
+        disableCallbacks.Clear();
     }
 
     public void UseTab(string id)

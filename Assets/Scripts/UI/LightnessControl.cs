@@ -19,5 +19,12 @@ public class LightnessControl : MonoBehaviour
     {
         val = Mathf.Lerp(0, 0.5f, val);
         background.color = (Color.white * val).WithA(1);
+
+        if (Lv03Trigger.isEnabled)
+        {
+            SettingsPanel.instance.disableCallbacks.Add(
+                () => Subtitle.instance.ShowString("Nemo", "有路出来了！但是「下面有水」，我过不去")
+            );
+        }
     }
 }
