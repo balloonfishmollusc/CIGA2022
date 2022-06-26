@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using GameFlow;
 using DG.Tweening;
-using TMPro;
+using UnityEngine.SceneManagement;
 
 public class ExitButton : InteractiveBehaviour
 {
@@ -11,10 +9,12 @@ public class ExitButton : InteractiveBehaviour
     [SlotMethod("player/enter")]
     void End(Signal s)
     {
-        transform.parent.GetComponentInChildren<TextMeshPro>().text = "START";
+        //transform.parent.GetComponentInChildren<TextMeshPro>().text = "START";
         var cg = GameObject.Find("Canvas/BlackScreen").GetComponent<CanvasGroup>();
         cg.blocksRaycasts = true;
         PlayerController.instance.enabled = false;
-        cg.DOFade(1, 2);
+        PlayerActor.instance.enabled = false;
+        cg.DOFade(1, 2).OnComplete(
+            () => SceneManager.LoadScene("002"));
     }
 }
