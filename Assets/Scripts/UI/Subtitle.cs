@@ -33,9 +33,9 @@ public class Subtitle : MonoBehaviour
 
         textMeshUGUI.text = str;
 
-        if(cg) cg.alpha = 1;
+        if (cg) cg.alpha = 1;
 
-        currTask = Task.Delay(2).OnComplete(() => cg.alpha = 0);
+        currTask = Task.Delay(2, useUnscaledTime: true).OnComplete(() => cg.alpha = 0);
         currTask.Play();
     }
 }

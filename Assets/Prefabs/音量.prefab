@@ -143,8 +143,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u97F3\u91CF"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 0b914289b8cb72b4385c0262157bded7, type: 2}
-  m_sharedMaterial: {fileID: -3282140392728227701, guid: 0b914289b8cb72b4385c0262157bded7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d44a9aa9d70110e42845732da4e84304, type: 2}
+  m_sharedMaterial: {fileID: -4304706308618812768, guid: d44a9aa9d70110e42845732da4e84304, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
