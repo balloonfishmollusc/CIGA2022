@@ -21,8 +21,11 @@ public class VolControl : MonoBehaviour
 
         if (Lv02Trigger.isEnabled && val < 0.2f)
         {
+            var g = GameObject.Find("MushroomTrigger");
+            if (!g) return;
+
             GameObject.Find("Mushrooms").GetComponent<PlayableDirector>().enabled = true;
-            Destroy(GameObject.Find("MushroomTrigger"), 1f);
+            Destroy(g, 1f);
         }
     }
 

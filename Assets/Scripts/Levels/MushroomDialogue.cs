@@ -29,5 +29,6 @@ public class MushroomDialogue : InteractiveBehaviour
     private void OnDestroy()
     {
         Subtitle.instance.ShowString("Nemo", "哇！感觉可以吃好久！");
+
     }
 }
