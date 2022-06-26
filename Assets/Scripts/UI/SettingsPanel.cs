@@ -21,6 +21,8 @@ public class SettingsPanel : MonoBehaviour
         GetComponent<CanvasGroup>().blocksRaycasts = true;
 
         Time.timeScale = 0;
+
+        UseTab("0");
     }
 
     private void OnDisable()

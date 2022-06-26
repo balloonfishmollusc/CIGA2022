@@ -15,6 +15,6 @@ public class WaterTrap : InteractiveBehaviour
     }
     void TeleportPlayer()
     {
-        PlayerActor.instance.ResetSelf();
+        Globals.instance.ResetLevel();
     }
 }
