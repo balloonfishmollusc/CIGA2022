@@ -22,7 +22,7 @@ public class Lv03Trigger : InteractiveBehaviour
         }
 
         isEnabled = true;
-        if (SettingsPanel.instance.volControl.slider.value <= 0.2f)
+        if (SettingsPanel.instance.volControl.slider.value <= VolControl.threshold)
             SettingsPanel.instance.volControl.slider.value = 1.0f;
         Destroy(gameObject);
     }

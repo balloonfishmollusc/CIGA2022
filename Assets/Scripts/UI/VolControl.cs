@@ -8,6 +8,8 @@ public class VolControl : MonoBehaviour
 {
     public Slider slider;
 
+    public static float threshold = 0.5f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +21,7 @@ public class VolControl : MonoBehaviour
     {
         AudioListener.volume = val;
 
-        if (Lv02Trigger.isEnabled && val < 0.2f)
+        if (Lv02Trigger.isEnabled && val < threshold)
         {
             var g = GameObject.Find("MushroomTrigger");
             if (!g) return;
